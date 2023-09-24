@@ -25,7 +25,6 @@ class DetailViewController: UIViewController {
     let hintText = "텍스트를 여기에 입력하세요."
     
     // ToDo 색깔 구분을 위해 임시적으로 숫자저장하는 변수
-    // (나중에 어떤 색상이 선택되어 있는지 쉽게 파악하기 위해)
     var temporaryNum: Int64? = 0
     
     var toDoData: ToDoData? {
@@ -78,8 +77,6 @@ class DetailViewController: UIViewController {
             
             mainTextView.text = hintText
             mainTextView.textColor = .lightGray
-            
-            
         }
         
         setUIColor( temporaryNum ?? 0 )
@@ -103,7 +100,7 @@ class DetailViewController: UIViewController {
         saveButton.backgroundColor = MyColor(rawValue: num)?.buttonColor
     }
     
-    // MARK: - 버튼 선택 이벤트
+    // MARK: - 색 버튼 선택 이벤트
     @IBAction func colorButtonTapped(_ sender: UIButton) {
         
         temporaryNum = Int64(sender.tag)
@@ -112,7 +109,7 @@ class DetailViewController: UIViewController {
         setUIColor( temporaryNum ?? 0 )
     }
     
-   
+    // MARK: - 저장 버튼 클릭 이벤트
     @IBAction func saveButtonTapped(_ sender: UIButton) {
         
         if let toDoData = self.toDoData{
@@ -133,6 +130,7 @@ class DetailViewController: UIViewController {
         
     }
     
+    // MARK: - 화면 클릭 시 키보드 내려가는 함수
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
     }

@@ -20,6 +20,7 @@ class ViewController: UIViewController {
         configureUI()
     }
     
+    // MARK: - 새로 추가된 메모 불러오기
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -45,6 +46,7 @@ class ViewController: UIViewController {
         navigationItem.rightBarButtonItem = addButton
     }
     
+    // MARK: - 추가 버튼 클릭 이벤트
   @objc func addButtonTapped(){
      performSegue(withIdentifier: "toDetailView", sender: nil)
     }
@@ -64,10 +66,12 @@ class ViewController: UIViewController {
 
 extension ViewController: UITableViewDelegate{
     
+    // MARK: - 테이블뷰 셀 높이 자동으로
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return toDoTableView.rowHeight
     }
    
+    // MARK: - 테이블뷰 셀 삭제
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             toDoDataManager.deleteToDoData(data: toDoDataManager.getToDoDataList()[indexPath.row]) {
